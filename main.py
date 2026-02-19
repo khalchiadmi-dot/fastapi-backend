@@ -3,22 +3,12 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-# Autoriser toutes les origines (pour React)
-origins = ["*"]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
+    allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# DonnÃ©es fictives
-countries = [
-    {"name": "France", "flag": "ðŸ‡«ðŸ‡·"},
-    {"name": "USA", "flag": "ðŸ‡ºðŸ‡¸"},
-    {"name": "Japan", "flag": "ðŸ‡¯ðŸ‡µ"}
-]
 
 @app.get("/message")
 def get_message():
@@ -26,6 +16,8 @@ def get_message():
 
 @app.get("/countries")
 def get_countries():
-    return countries
-
-
+    return [
+        {"name": "France", "flag": "í·«í··"},
+        {"name": "USA", "flag": "í·ºí·¸"},
+        {"name": "Japan", "flag": "í·¯í·µ"}
+    ]
